@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import { connectDb } from "./db/db.js";
 const app = express();
 import userRouter from "./router/user.router.js";
+import corsMiddleware from "./middlewares/corsMiddleware.js"
+
 
 const port = 4000;
 dotenv.config(); // Adjust path if necessary
@@ -18,7 +20,7 @@ const corsOptions = {
 
 // Apply CORS middleware
 app.use(cors(corsOptions));
-
+app.use(corsMiddleware)
 // app.use(
 //   cors({
 //     origin: "https://doctor-appiontment-app-omega.vercel.app",
