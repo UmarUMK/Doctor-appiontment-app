@@ -90,6 +90,7 @@ const pin = '4213'
   if(otpString == pin){
     isVerified = true;
   }
+  console.log(isVerified)
   useEffect(() => {
     console.log(isVerified);
 
