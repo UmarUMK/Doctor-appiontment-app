@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+const url = "https://doctor-appiontment-app-api.vercel.app"
 export const patientDetails = createAsyncThunk(
   "user/patient-details",
   async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/user/patient-details",
+        `${url}/user/patient-details`,
         formData
       );
       return response.data;
@@ -20,7 +20,7 @@ export const appiontmentDetails = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/user/appiontment",
+        `${url}/user/appiontment`,
         formData
       );
       return response.data;
