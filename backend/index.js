@@ -11,7 +11,7 @@ dotenv.config(); // Adjust path if necessary
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://doctor-appiontment-app-omega.vercel.app/",
     credentials: true,
   })
 );
