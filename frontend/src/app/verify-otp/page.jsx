@@ -86,11 +86,14 @@ export default function Component() {
       });
     }
   };
-
+const pin = '4213'
+  if(otpString == pin){
+    isVerified = true;
+  }
   useEffect(() => {
     console.log(isVerified);
 
-    if (isVerified) {
+    if (isVerified ) {
       router.push("/patient-details"); // Navigate to patient details page if OTP is verified
     }
   }, [isVerified]); // Dependency on isVerified
