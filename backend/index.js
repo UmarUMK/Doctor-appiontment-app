@@ -12,14 +12,14 @@ const port = 4000;
 dotenv.config(); // Adjust path if necessary
 
 
-const corsOptions = {
-  origin: "https://doctor-appiontment-app-omega.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
+// const corsOptions = {
+//   origin: "https://doctor-appiontment-app-omega.vercel.app",
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
 
 // Apply CORS middleware
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(corsMiddleware)
 // app.use(
 //   cors({
