@@ -44,7 +44,7 @@ export default function AppointmentForm() {
 
   useEffect(() => {
     if (isSubmitted) {
-      router.push("/appointment-success"); // Corrected spelling
+      router.push("/appiontment-success"); // Corrected spelling
     }
   }, [isSubmitted, router]);
 
