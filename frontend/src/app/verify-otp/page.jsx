@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { verifyOtp } from "@/store/authSlice";
 
 export default function Component() {
@@ -59,21 +59,26 @@ export default function Component() {
     phoneNumber = localStorage.getItem("phoneNumber");
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const otpString = otp.join("");
-
     if (otpString.length === 4) {
-      // Dispatch the OTP and phone number for verification
-      console.log("Submitting OTP:", otpString, phoneNumber);
-      dispatch(verifyOtp({ otpString, phoneNumber }));
-
-      // Show success toast
-      toast({
-        title: "OTP Submitted",
-        description: `Your OTP ${otpString} has been submitted for verification.`,
-      });
+      setLoading(true); // Start loading
+      try {
+        await dispatch(verifyOtp({ otpString, phoneNumber })).unwrap();
+        toast({
+          title: "OTP Submitted",
+          description: `Your OTP ${otpString} has been submitted for verification.`,
+        });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false); // End loading
+      }
     } else {
-      // Show error toast if OTP is incomplete
       toast({
         title: "Invalid OTP",
         description: "Please enter a complete 4-digit OTP.",

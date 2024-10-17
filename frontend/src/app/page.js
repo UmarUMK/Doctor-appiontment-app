@@ -10,7 +10,7 @@ import { toast } from "@/hooks/use-toast";
 import { Calendar, Mail, Phone, User, Moon, Sun } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { sendOtp } from "@/store/authSlice";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const ThemeContext = createContext({
   isDarkMode: false,
@@ -110,7 +110,7 @@ export default function Component() {
 
     dispatch(sendOtp(formData));
 
-    router.push("verify-otp");
+    router.push("/verify-otp");
     localStorage.setItem("phoneNumber", formData.phoneNumber);
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));

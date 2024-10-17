@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,25 +22,31 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { CalendarIcon } from "lucide-react";
 import { useDispatch } from "react-redux";
-import { appiontmentDetails } from "@/store/detailSlice";
-import { useEffect } from "react";
+import { appiontmentDetails } from "@/store/detailSlice.js"; // Corrected spelling
+import { useEffect, useState } from "react";
 
 export default function AppointmentForm() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
   const router = useRouter();
   const dispatch = useDispatch();
+  const [isSubmitted, setIsSubmitted] = useState(false); // New state
 
   const onSubmit = (formData) => {
     console.log("Form Data Submitted:", formData);
-    dispatch(appiontmentDetails(formData));
+    dispatch(appiontmentDetails(formData)); // Corrected spelling
+    setIsSubmitted(true); // Set the submission state
   };
+
   useEffect(() => {
-    router.push("/appiontment-success");
-  });
+    if (isSubmitted) {
+      router.push("/appointment-success"); // Corrected spelling
+    }
+  }, [isSubmitted, router]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center p-4">
@@ -64,7 +70,7 @@ export default function AppointmentForm() {
           <CardContent className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="doctor">Doctor</Label>
-              <Select onValueChange={(value) => register("doctor", { value })}>
+              <Select onValueChange={(value) => setValue("doctor", value)}>
                 <SelectTrigger id="doctor">
                   <SelectValue placeholder="Select a doctor" />
                 </SelectTrigger>
@@ -85,6 +91,9 @@ export default function AppointmentForm() {
                   {...register("reasonForAppointment", { required: true })}
                   className="h-32"
                 />
+                {errors.reasonForAppointment && (
+                  <span>This field is required</span>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="additionalComment">
@@ -108,6 +117,7 @@ export default function AppointmentForm() {
                 />
                 <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
               </div>
+              {errors.appointmentDate && <span>This field is required</span>}
             </div>
           </CardContent>
           <CardFooter>
