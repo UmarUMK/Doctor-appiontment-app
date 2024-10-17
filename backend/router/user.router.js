@@ -3,7 +3,7 @@ import { sendOtp, verifyOtp } from "../controllers/user.controller.js";
 import { patientDetails } from "../controllers/patient-details.controller.js";
 import { appointment } from "../controllers/appointment.controller.js";
 import { authMiddleware } from "../middlewares/jwt.js";
-import {}
+
 const router = Router();
 function corsMiddleware(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'your-frontend-url'); // Replace with your frontend URL
