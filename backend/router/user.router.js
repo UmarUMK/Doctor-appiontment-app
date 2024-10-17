@@ -12,8 +12,8 @@ function corsMiddleware(req, res, next) {
     next(); // Call the next middleware or route handler
 }
 
-router.post("/send-otp",corsMiddleware, sendOtp);
-router.post("/verify-otp",corsMiddleware, verifyOtp);
-router.post("/patient-details",corsMiddleware, patientDetails);
-router.post("/appiontment",corsMiddleware, appointment);
+router.post("/send-otp", sendOtp);
+router.post("/verify-otp", verifyOtp);
+router.post("/patient-details", patientDetails);
+router.post("/appiontment",appointment);
 export default router;
