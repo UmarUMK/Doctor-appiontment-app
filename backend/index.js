@@ -11,7 +11,7 @@ dotenv.config(); // Adjust path if necessary
 
 app.use(
   cors({
-    origin: "https://doctor-appiontment-app-omega.vercel.app/",
+    origin: "https://doctor-appiontment-app-omega.vercel.app",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
