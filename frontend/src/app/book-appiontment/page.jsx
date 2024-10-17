@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,6 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { CalendarIcon } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { appiontmentDetails } from "@/store/detailSlice";
+import { useEffect } from "react";
 
 export default function AppointmentForm() {
   const {
@@ -36,8 +37,10 @@ export default function AppointmentForm() {
   const onSubmit = (formData) => {
     console.log("Form Data Submitted:", formData);
     dispatch(appiontmentDetails(formData));
-    router.push("appiontment-success");
   };
+  useEffect(() => {
+    router.push("/appiontment-success");
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center p-4">

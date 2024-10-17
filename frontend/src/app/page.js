@@ -10,7 +10,7 @@ import { toast } from "@/hooks/use-toast";
 import { Calendar, Mail, Phone, User, Moon, Sun } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { sendOtp } from "@/store/authSlice";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 const ThemeContext = createContext({
   isDarkMode: false,

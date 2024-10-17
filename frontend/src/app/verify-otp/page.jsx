@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { verifyOtp } from "@/store/authSlice";
 
 export default function Component() {
@@ -54,7 +54,10 @@ export default function Component() {
   const router = useRouter();
   const { isVerified } = useSelector((state) => state.auth);
   console.log(isVerified);
-  const phoneNumber = localStorage.getItem("phoneNumber");
+  let phoneNumber;
+  useEffect(() => {
+    phoneNumber = localStorage.getItem("phoneNumber");
+  });
 
   const handleSubmit = () => {
     const otpString = otp.join("");
@@ -83,7 +86,7 @@ export default function Component() {
     console.log(isVerified);
 
     if (isVerified) {
-      router.push("patient-details"); // Navigate to patient details page if OTP is verified
+      router.push("/patient-details"); // Navigate to patient details page if OTP is verified
     }
   }, [isVerified]); // Dependency on isVerified
 
