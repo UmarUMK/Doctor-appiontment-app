@@ -7,14 +7,14 @@ const initialState = {
   error: null,
   user: null,
 };
-
+const url = "https://doctor-appiontment-app-api.vercel.app"
 // Thunk to send OTP
 export const sendOtp = createAsyncThunk(
   "auth/sendOtp",
   async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/user/send-otp",
+        `${url}/user/send-otp`,
         formData
       );
       return response.data;
@@ -30,7 +30,7 @@ export const verifyOtp = createAsyncThunk(
   async ({ otpString, phoneNumber }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/user/verify-otp",
+        `${url}user/verify-otp`,
         {
           otp: otpString,
           phoneNumber,
