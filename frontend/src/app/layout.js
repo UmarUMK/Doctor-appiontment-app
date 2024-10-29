@@ -22,11 +22,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         {/* Google AdSense Script */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          crossOrigin="anonymous"
-        ></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6273358578124716"
+     crossorigin="anonymous"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
